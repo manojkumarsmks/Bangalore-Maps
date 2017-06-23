@@ -1,5 +1,7 @@
 package com.example.mkumar.bangaloremaps;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,12 +24,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private boolean mapReady;
     private static String TAG = MapsActivity.class.getSimpleName();
     private ImageButton filterButton;
+    private FloatingActionButton newElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        newElement = (FloatingActionButton)findViewById(R.id.fab);
+        newElement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MapsActivity.this, AddNewElements.class);
+                startActivity(intent);
+            }
+        });
 /*        final MapFragment mapFragment = (MapFragment)getFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(MapsActivity.this);*/
 
