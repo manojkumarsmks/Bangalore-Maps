@@ -11,41 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#80C80102">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:text="Filter your interest"
-                    android:layout_centerInParent="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="20dp"
-                    android:paddingLeft="10dp"/>
-
-<!--
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:drawableLeft="@drawable/ic_tune_black_18dp"
-                    android:background="#80C80102"
-                    android:alpha="0.10"
-                    android:textColor="@android:color/background_dark"
-                    android:text="filter"
-                    android:paddingRight="10dp"/>
--->
-            </RelativeLayout>
-        </LinearLayout>
-
+        
     </fragment>
 </RelativeLayout>
