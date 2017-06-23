@@ -212,16 +212,20 @@
 
         </RelativeLayout>
 
-        <Button
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:layout_gravity="center_horizontal|center"
-            android:text="Apply" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Apply" />
 
 </RelativeLayout>
