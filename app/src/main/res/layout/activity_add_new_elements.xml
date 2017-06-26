@@ -41,7 +41,7 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp">
 
-                <!--TextView and checkbox for "Things To-Do"-->
+                <!--TextView and checkbox for "shopping"-->
                 <LinearLayout
                     android:id="@+id/linearLayoutShopping"
                     android:layout_width="match_parent"
@@ -52,16 +52,18 @@
                         android:id="@+id/textViewShopping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/TextColor"
+                        android:textColor="@color/colorPrimaryDark"
                         android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
                         android:layout_weight="1"
-                        android:text=" Shopping" />
+                        android:text=" Shopping"/>
 
                     <RadioButton
-                        android:id="@+id/checkBoxShopping"
+                        android:id="@+id/radioButtonShopping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp" />
+                        android:layout_marginEnd="10dp"
+                        android:checked="true"/>
                 </LinearLayout>
 
                 <!--TextView and checkbox for "Temples"-->
@@ -81,7 +83,7 @@
                         android:text=" Temples " />
 
                     <RadioButton
-                        android:id="@+id/checkBoxTemple"
+                        android:id="@+id/radioButtonTemple"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp" />
@@ -104,7 +106,7 @@
                         android:text=" Veg Restaurants" />
 
                     <RadioButton
-                        android:id="@+id/checkBoxVeg"
+                        android:id="@+id/radioButtonVeg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp" />
@@ -128,7 +130,7 @@
                         android:text=" Biryani/Non-Veg Restaurants" />
 
                     <RadioButton
-                        android:id="@+id/checkBoxNonVeg"
+                        android:id="@+id/radioButtonNonVeg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp" />
@@ -151,7 +153,7 @@
                         android:text=" Places to visit" />
 
                     <RadioButton
-                        android:id="@+id/checkBoxThingToDo"
+                        android:id="@+id/radioButtonToDo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp" />
