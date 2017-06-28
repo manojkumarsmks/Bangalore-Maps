@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1015571799242",
+    "firebase_url": "https://indiatripmaps.firebaseio.com",
+    "project_id": "indiatripmaps",
+    "storage_bucket": "indiatripmaps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015571799242:android:1d3e08edca791097",
+        "android_client_info": {
+          "package_name": "com.example.mkumar.bangaloremaps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015571799242-uu9vv90gjnmv2g83fmecdq7q5ifa9jk5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mkumar.bangaloremaps",
+            "certificate_hash": "334a6a45595c096ad3a5396716487d250d16eaa4"
+          }
+        },
+        {
+          "client_id": "1015571799242-jpels62r0lvm7c8ajh0mlacao8cirasr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4GAV36iO8AzkUUPbT4jKcXv8F-Qu4Jys"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015571799242-jpels62r0lvm7c8ajh0mlacao8cirasr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

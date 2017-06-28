@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -23,11 +25,20 @@ import org.w3c.dom.Text;
 
 public class SettingActivity extends AppCompatActivity{
 
-
     public static final String TAG = SettingActivity.class.getSimpleName();
+    public static final String SHARED_PREF_DISTANCE = "Distance";
+    public static final String SHARED_PREF_SHOPPING ="Shopping";
+    public static final String SHARED_PREF_TEMPLES = "Temples";
+    public static final String SHARED_PREF_VEG_RESTAURANTS  = "Veg Restaurants";
+    public static final String SHARED_PREF_NON_VEG_RESTAURANTS = "Non-Veg Restaurants";
+    public static final String SHARED_PREF_PLACES_TO_VISIT = "Places to Visit";
+    public static final String SHARED_PREF_DEFAULT_SETTING ="Default Settings";
+    public static final String SHARED_PREF_CUSTOM_SETTING ="Custom Setting";
+
     SeekBar areaRadiusSeekBar;
     TextView areaChangeTextView, shoppingTextView, templeTextView, vegTextView, nonVegTextView, placesTextView ;
     CheckBox checkBoxShopping, checkBoxTemple, checkBoxVeg, checkBoxNonVeg, checkBoxThingToDo;
+    Button settingApply;
 
 
     @Override
@@ -40,6 +51,8 @@ public class SettingActivity extends AppCompatActivity{
         Initialization();
 
         SharedPreferencesDefault();
+
+        GetBackSavedSetting();
 
         //areaRadiusSeekBar.setMax();
         areaRadiusSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -144,10 +157,41 @@ public class SettingActivity extends AppCompatActivity{
             }
         });
 
+        settingApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customSettingApply();
+            }
+        });
+
 
 
 
     }
+
+    private void GetBackSavedSetting() {
+
+        SharedPreferences getSavedSetting = getSharedPreferences(SHARED_PREF_DEFAULT_SETTING, Context.MODE_PRIVATE);
+
+        Log.d(TAG, "Value stored "+getSavedSetting.getBoolean(SHARED_PREF_CUSTOM_SETTING,true));
+        if(getSavedSetting.getBoolean(SHARED_PREF_CUSTOM_SETTING,false)) {
+            SharedPreferences getCustomSetting = getSharedPreferences(SHARED_PREF_CUSTOM_SETTING, Context.MODE_PRIVATE);
+            Log.d(TAG, String.valueOf(getCustomSetting.getInt(SHARED_PREF_DISTANCE, -1)));
+            Log.d(TAG, "Shopping is "+getCustomSetting.getBoolean("Shopping",false));
+            Log.d(TAG, "Temples is "+getCustomSetting.getBoolean("Temples",false));
+            Log.d(TAG, "Veg is "+getCustomSetting.getBoolean("Veg Restaurants",false));
+            Log.d(TAG, "Non - Veg is "+getCustomSetting.getBoolean("Non-Veg Restaurants",false));
+            Log.d(TAG, "Places to visit "+getCustomSetting.getBoolean("Places to Visit",false));
+        }
+        else {
+
+            ResetDefaultSetting();
+        }
+
+
+
+    }
+
 
     private void ActionBarInitialization() {
         ActionBar action = getActionBar();
@@ -180,7 +224,7 @@ public class SettingActivity extends AppCompatActivity{
 
     private void ResetDefaultSetting() {
 
-        SharedPreferences resetSetting = getSharedPreferences("DefaultSetting", Context.MODE_PRIVATE);
+        SharedPreferences resetSetting = getSharedPreferences(SHARED_PREF_DEFAULT_SETTING, Context.MODE_PRIVATE);
        /* Log.d(TAG, "Distance is "+resetSetting.getInt("Distance",-1));
         Log.d(TAG, "Shopping is "+resetSetting.getBoolean("Shopping",false));
         Log.d(TAG, "Temples is "+resetSetting.getBoolean("Temples",false));
@@ -188,26 +232,50 @@ public class SettingActivity extends AppCompatActivity{
         Log.d(TAG, "Non - Veg is "+resetSetting.getBoolean("Non-Veg Restaurants",false));
         Log.d(TAG, "Places to visit "+resetSetting.getBoolean("Places to Visit",false));*/
 
-        areaRadiusSeekBar.setProgress(2);
-        checkBoxShopping.setChecked(true);
-        checkBoxTemple.setChecked(true);
-        checkBoxVeg.setChecked(true);
-        checkBoxNonVeg.setChecked(true);
-        checkBoxThingToDo.setChecked(true);
+        areaRadiusSeekBar.setProgress(resetSetting.getInt(SHARED_PREF_DISTANCE,-1));
+        checkBoxShopping.setChecked(resetSetting.getBoolean(SHARED_PREF_SHOPPING,false));
+        checkBoxTemple.setChecked(resetSetting.getBoolean(SHARED_PREF_TEMPLES,false));
+        checkBoxVeg.setChecked(resetSetting.getBoolean(SHARED_PREF_VEG_RESTAURANTS,false));
+        checkBoxNonVeg.setChecked(resetSetting.getBoolean(SHARED_PREF_NON_VEG_RESTAURANTS,false));
+        checkBoxThingToDo.setChecked(resetSetting.getBoolean(SHARED_PREF_PLACES_TO_VISIT,false));
     }
 
     private void SharedPreferencesDefault() {
 
-        SharedPreferences defaultSetting = getSharedPreferences("DefaultSetting", Context.MODE_PRIVATE);
+        SharedPreferences defaultSetting = getSharedPreferences(SHARED_PREF_DEFAULT_SETTING, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = defaultSetting.edit();
-        editor.putInt("Distance", 30);
-        editor.putBoolean("Shopping", true);
-        editor.putBoolean("Temples", true);
-        editor.putBoolean("Veg Restaurants", true);
-        editor.putBoolean("Non-Veg Restaurants", true);
-        editor.putBoolean("Places to Visit", true);
+        editor.putInt(SHARED_PREF_DISTANCE, 2);
+        editor.putBoolean(SHARED_PREF_SHOPPING, true);
+        editor.putBoolean(SHARED_PREF_TEMPLES, true);
+        editor.putBoolean(SHARED_PREF_VEG_RESTAURANTS, true);
+        editor.putBoolean(SHARED_PREF_NON_VEG_RESTAURANTS, true);
+        editor.putBoolean(SHARED_PREF_PLACES_TO_VISIT, true);
+        editor.putBoolean(SHARED_PREF_CUSTOM_SETTING, false);
 
         editor.commit();
+
+    }
+
+    private void customSettingApply() {
+        SharedPreferences customSetting = getSharedPreferences(SHARED_PREF_CUSTOM_SETTING, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = customSetting.edit();
+
+        //Log.d(TAG, String.valueOf(areaRadiusSeekBar.getProgress()));
+        editor.putInt(SHARED_PREF_DISTANCE, areaRadiusSeekBar.getProgress());
+        editor.putBoolean(SHARED_PREF_SHOPPING, checkBoxShopping.isChecked());
+        editor.putBoolean(SHARED_PREF_TEMPLES, checkBoxTemple.isChecked());
+        editor.putBoolean(SHARED_PREF_VEG_RESTAURANTS, checkBoxVeg.isChecked());
+        editor.putBoolean(SHARED_PREF_NON_VEG_RESTAURANTS, checkBoxNonVeg.isChecked());
+        editor.putBoolean(SHARED_PREF_PLACES_TO_VISIT, checkBoxThingToDo.isChecked());
+        editor.commit();
+
+        //
+        SharedPreferences defaultSetting = getSharedPreferences(SHARED_PREF_DEFAULT_SETTING, Context.MODE_PRIVATE);
+        SharedPreferences.Editor defaultEditor = defaultSetting.edit();
+        defaultEditor.putBoolean(SHARED_PREF_CUSTOM_SETTING, true);
+        defaultEditor.commit();
+
+
 
     }
 
@@ -222,11 +290,36 @@ public class SettingActivity extends AppCompatActivity{
         checkBoxNonVeg = (CheckBox)findViewById(R.id.checkBoxNonVeg);
         checkBoxThingToDo = (CheckBox)findViewById(R.id.checkBoxThingToDo);
 
-
         shoppingTextView = (TextView)findViewById(R.id.textViewShopping);
         templeTextView = (TextView)findViewById(R.id.textViewTemple);
         vegTextView = (TextView)findViewById(R.id.textViewVeg);
         nonVegTextView = (TextView)findViewById(R.id.textViewNonVeg);
         placesTextView = (TextView)findViewById(R.id.textViewThingToDo);
+
+        settingApply = (Button)findViewById(R.id.settingButton);
+
+
+        //Initializing the
+        checkBoxShopping.setChecked(true);
+        checkBoxTemple.setChecked(true);
+        checkBoxVeg.setChecked(true);
+        checkBoxNonVeg.setChecked(true);
+        checkBoxThingToDo.setChecked(true);
+
+        shoppingTextView.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryDark));
+        shoppingTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
+        templeTextView.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryDark));
+        templeTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
+        vegTextView.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryDark));
+        vegTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
+        nonVegTextView.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryDark));
+        nonVegTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
+        placesTextView.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryDark));
+        placesTextView.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+
     }
 }
