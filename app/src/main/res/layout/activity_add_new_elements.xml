@@ -230,6 +230,7 @@
                     android:id="@+id/inputLat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="phone"
                     android:hint="Latitude " />
 
             </android.support.design.widget.TextInputLayout>
@@ -244,6 +245,7 @@
                     android:id="@+id/inputLong"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="phone"
                     android:hint="Longitude " />
 
             </android.support.design.widget.TextInputLayout>
@@ -253,7 +255,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/addButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
