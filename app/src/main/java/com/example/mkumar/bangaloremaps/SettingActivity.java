@@ -161,13 +161,13 @@ public class SettingActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 customSettingApply();
+
+                finish();
             }
         });
-
-
-
-
     }
+
+
 
     private void GetBackSavedSetting() {
 

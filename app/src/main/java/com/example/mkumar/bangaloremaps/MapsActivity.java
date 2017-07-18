@@ -14,6 +14,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -23,6 +28,11 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -30,11 +40,29 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static String TAG = MapsActivity.class.getSimpleName();
     private ImageButton filterButton;
     private FloatingActionButton newElement;
+    ArrayList<HashMap<String, MapElements>> exisitingValues = new ArrayList<HashMap<String, MapElements>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+       // Firebase refForChange = new Firebase(AddNewElements.FIREBASE_URL).child("Shopping");
+        /*refForChange.addValueEventListener(new ValueEventListener() {
+        /*refForChange.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                MapElements mapElement = dataSnapshot.getValue(MapElements.class);
+
+                if(mapElement!=null)
+                    Log.d(TAG, mapElement.getName());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });*/
 
         //setStatusBarTranslucent(true);
         newElement = (FloatingActionButton)findViewById(R.id.fab);

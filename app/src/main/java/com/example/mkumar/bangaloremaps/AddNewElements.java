@@ -27,7 +27,6 @@ public class AddNewElements extends AppCompatActivity {
     TextView shoppingTextView, templeTextView, vegTextView, nonVegTextView, placesTextView;
     TextInputLayout inputLayoutName, inputLatitude, inputLongitude;
     Button addButton;
-    MapElements newMapElement;
     String currentCategory = "Shopping";
 
 
@@ -115,11 +114,13 @@ public class AddNewElements extends AppCompatActivity {
                 tempName = null,
                 tempLatitude = null,
                 tempLongitude = null;
+        boolean validityCheck = true;
 
         if(!inputLayoutName.getEditText().getText().equals("")) {
             tempName = inputLayoutName.getEditText().getText().toString();
         }
         else {
+            validityCheck = false;
             inputLayoutName.setError(CANNOT_BE_EMPTY);
         }
 
@@ -127,6 +128,7 @@ public class AddNewElements extends AppCompatActivity {
             tempLatitude = inputLatitude.getEditText().getText().toString();
         }
         else {
+            validityCheck = false;
             inputLatitude.setError(CANNOT_BE_EMPTY);
         }
 
@@ -134,18 +136,24 @@ public class AddNewElements extends AppCompatActivity {
             tempLongitude = inputLongitude.getEditText().getText().toString();
         }
         else {
+            validityCheck = false;
             inputLongitude.setError(CANNOT_BE_EMPTY);
         }
         tempCategory = currentCategory;
 
-        newMapElement = new MapElements(tempName,
-                Double.parseDouble(tempLatitude), Double.parseDouble(tempLongitude));
+        if(!validityCheck) {
+            ValidateAndPush();
+        }
+        MapElements newMapElement = new MapElements(tempName, tempLatitude, tempLongitude);
+
+        String temp = tempName + " "+tempLatitude + " "+tempLongitude;
+        MapElements test = new MapElements();
+       // TestingPojo test = new TestingPojo("name");
+
+        // Log.d(TAG, newMapElement.getName() + " " +newMapElement.Longitude + " " +newMapElement.getLatitude());
 
 
-        ref.child(tempCategory).setValue(newMapElement);
-
-        Log.d(TAG, "Clicked");
-
+        ref.child(tempCategory).push().setValue(temp);
 
     }
 

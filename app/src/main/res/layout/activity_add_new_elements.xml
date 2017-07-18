@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/TextColor"
                         android:layout_weight="1"
-                        android:text=" Biryani/Non-Veg Restaurants" />
+                        android:text=" Biryani or Non-Veg Restaurants" />
 
                     <RadioButton
                         android:id="@+id/radioButtonNonVeg"
