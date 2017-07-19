@@ -46,16 +46,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        Firebase.setAndroidContext(this);
 
-       // Firebase refForChange = new Firebase(AddNewElements.FIREBASE_URL).child("Shopping");
-        /*refForChange.addValueEventListener(new ValueEventListener() {
-        /*refForChange.addValueEventListener(new ValueEventListener() {
+      /* Firebase refForChange = new Firebase(AddNewElements.FIREBASE_URL);
+
+        refForChange.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                MapElements mapElement = dataSnapshot.getValue(MapElements.class);
+                Log.d(TAG, "Count "+dataSnapshot.getChildrenCount());
+                    String value =dataSnapshot.getValue().toString();
 
-                if(mapElement!=null)
-                    Log.d(TAG, mapElement.getName());
+                    Log.d(TAG, "Values are "+value);
             }
 
             @Override
@@ -63,6 +64,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });*/
+
+
+
+
 
         //setStatusBarTranslucent(true);
         newElement = (FloatingActionButton)findViewById(R.id.fab);

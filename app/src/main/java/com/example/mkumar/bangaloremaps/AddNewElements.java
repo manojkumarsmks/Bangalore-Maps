@@ -146,14 +146,14 @@ public class AddNewElements extends AppCompatActivity {
         }
         MapElements newMapElement = new MapElements(tempName, tempLatitude, tempLongitude);
 
-        String temp = tempName + " "+tempLatitude + " "+tempLongitude;
-        MapElements test = new MapElements();
+        String temp = tempName + " : "+tempLatitude + ": "+tempLongitude;
+        MapElements test = new MapElements(tempName, tempLatitude, tempLongitude);
        // TestingPojo test = new TestingPojo("name");
 
         // Log.d(TAG, newMapElement.getName() + " " +newMapElement.Longitude + " " +newMapElement.getLatitude());
 
-
-        ref.child(tempCategory).push().setValue(temp);
+        ref.child(tempCategory).push().setValue(test);
+        //ref.child(tempCategory).push().setValue(temp);
 
     }
 

@@ -6,35 +6,28 @@ package com.example.mkumar.bangaloremaps;
 
 public class MapElements {
 
-    String  Name, Latitude, Longitude;
+    String  name, latitude, longitude;
 
     public MapElements() {
 
     }
 
     public MapElements( String name, String latitude, String longitude) {
-        this.Name = name;
-        this.Latitude = latitude;
-        this.Longitude = longitude;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
-
-    public MapElements(String Name) {
-        this.Name = Name;
-    }
-
-
-
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     public String getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
 
