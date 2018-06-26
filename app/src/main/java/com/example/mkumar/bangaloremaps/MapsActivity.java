@@ -21,7 +21,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -48,22 +47,31 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps);
         Firebase.setAndroidContext(this);
 
-      /* Firebase refForChange = new Firebase(AddNewElements.FIREBASE_URL);
+       Firebase refForChange = new Firebase(AddNewElements.FIREBASE_URL);
 
         refForChange.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "Count "+dataSnapshot.getChildrenCount());
-                    String value =dataSnapshot.getValue().toString();
+                /*Log.d(TAG, "Count "+dataSnapshot.getChildrenCount());
+                String value =dataSnapshot.getValue().toString();
+                Log.d(TAG, "Values are "+value);*/
+                HashMap<String,MapElements> testing1 = new HashMap<String, MapElements>();
 
-                    Log.d(TAG, "Values are "+value);
+                for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                {
+                    Log.d(TAG, "SNAPSHOT "+snapshot.getKey());
+                    String Key = snapshot.getKey();
+
+                    //Log.d(TAG, "SPECIFIC" +snapshot.child(Key).getValue().toString());
+
+                }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
 
             }
-        });*/
+        });
 
 
 
